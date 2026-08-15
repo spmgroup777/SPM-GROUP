@@ -3,6 +3,11 @@ import LocationDirections from "./LocationDirections";
 /*import CallbackForm from "./CallbackForm";*/
 import ContactChoice from "./ContactChoice";
 
+
+/* =========================================================
+   COMPANY STATISTICS
+   ========================================================= */
+
 const stats = [
   ["10+", "Years of real-estate experience"],
   ["5", "Own projects completed"],
@@ -10,6 +15,11 @@ const stats = [
   ["500+", "Customers"],
   ["50+", "Team members"],
 ];
+
+
+/* =========================================================
+   AMENITIES
+   ========================================================= */
 
 const amenities = [
   {
@@ -70,6 +80,11 @@ const amenities = [
   },
 ];
 
+
+/* =========================================================
+   SURROUNDING DEVELOPMENTS
+   ========================================================= */
+
 const surroundings = [
   "IT Raheja",
   "AIIMS",
@@ -83,6 +98,11 @@ const surroundings = [
   "Regional Ring Rail",
   "Bhuvanagiri Fort",
 ];
+
+
+/* =========================================================
+   DISTANCES
+   ========================================================= */
 
 const distances = [
   ["10 min", "Bhuvanagiri Bus Stop"],
@@ -100,9 +120,104 @@ const distances = [
   ["45 min", "ECIL"],
 ];
 
+
+/* =========================================================
+   ONGOING PROJECTS
+   ========================================================= */
+
+const ongoingProjects = [
+  {
+    number: "01",
+    name: "SPM Bhuvanagiri",
+    location: "Bhuvanagiri, Telangana",
+    status: "ONGOING",
+    image: "/spmm.jpg",
+    title: "200 Acres Resort-Style Mega Integrated Township",
+    description:
+      "The supplied promotional material describes a 200-acre resort-style mega integrated township concept. The material also lists Rusthapur, M. Thurkappally and Gouraram and mentions plot sizes including 121 sq yards.",
+    price: "₹5,49,999/-",
+  },
+];
+
+
+/* =========================================================
+   COMPLETED PROJECTS
+   =========================================================
+
+   IMPORTANT:
+   The supplied company information confirms:
+   - 5 own projects completed
+   - 10 associate projects completed
+
+   Individual completed-project names were not included
+   in the supplied page.tsx, so they are not invented here.
+
+   Replace the names and images below with the actual
+   completed project information when you have it.
+   ========================================================= */
+/*
+const completedProjects = [
+  {
+    number: "01",
+    name: "Own Project 01",
+    location: "SPM Group",
+    status: "COMPLETED",
+    image: "/project-brochure1.jpg",
+    title: "Completed SPM Development",
+    description:
+      "Completed project delivered by SPM Green Tech & Developers.",
+  },
+  {
+    number: "02",
+    name: "Own Project 02",
+    location: "SPM Group",
+    status: "COMPLETED",
+    image: "/project-brochure1.jpg",
+    title: "Completed SPM Development",
+    description:
+      "Completed project delivered by SPM Green Tech & Developers.",
+  },
+  {
+    number: "03",
+    name: "Own Project 03",
+    location: "SPM Group",
+    status: "COMPLETED",
+    image: "/project-brochure1.jpg",
+    title: "Completed SPM Development",
+    description:
+      "Completed project delivered by SPM Green Tech & Developers.",
+  },
+  {
+    number: "04",
+    name: "Own Project 04",
+    location: "SPM Group",
+    status: "COMPLETED",
+    image: "/project-brochure1.jpg",
+    title: "Completed SPM Development",
+    description:
+      "Completed project delivered by SPM Green Tech & Developers.",
+  },
+  {
+    number: "05",
+    name: "Own Project 05",
+    location: "SPM Group",
+    status: "COMPLETED",
+    image: "/project-brochure1.jpg",
+    title: "Completed SPM Development",
+    description:
+      "Completed project delivered by SPM Green Tech & Developers.",
+  },
+];*/
+
+
+/* =========================================================
+   HOME PAGE
+   ========================================================= */
+
 export default function Home() {
   return (
     <main>
+
 
       {/* =====================================================
           NAVIGATION
@@ -110,7 +225,10 @@ export default function Home() {
 
       <header className="nav">
 
-        <a href="#home" className="brand">
+        <a
+          href="#home"
+          className="brand"
+        >
 
           <Image
             src="/spm-group-logo.jpg"
@@ -128,12 +246,31 @@ export default function Home() {
 
 
         <nav>
-          <a href="#about">About</a>
-          <a href="#leadership">Leadership</a>
-          <a href="#project">Projects</a>
-          <a href="#amenities">Amenities</a>
-          <a href="#location">Location</a>
-          <a href="#contact">Contact</a>
+
+          <a href="#about">
+            About
+          </a>
+
+          <a href="#leadership">
+            Leadership
+          </a>
+
+          <a href="/projects">
+            Projects
+          </a>
+
+          <a href="#amenities">
+            Amenities
+          </a>
+
+          <a href="#location">
+            Location
+          </a>
+
+          <a href="#contact">
+            Contact
+          </a>
+
         </nav>
 
 
@@ -180,8 +317,15 @@ export default function Home() {
             />
 
             <div>
-              <strong>SPM</strong>
-              <span>GREEN TECH & DEVELOPERS</span>
+
+              <strong>
+                SPM
+              </strong>
+
+              <span>
+                GREEN TECH & DEVELOPERS
+              </span>
+
             </div>
 
           </div>
@@ -210,7 +354,7 @@ export default function Home() {
 
             <a
               className="primaryBtn"
-              href="#project"
+              href="/projects"
             >
               Explore Projects
             </a>
@@ -423,7 +567,7 @@ export default function Home() {
 
 
       {/* =====================================================
-          PROJECT
+          PROJECTS
       ===================================================== */}
 
       <section
@@ -434,85 +578,276 @@ export default function Home() {
         <div className="heading center">
 
           <p className="eyebrow">
-            FEATURED DEVELOPMENT
+            SPM PROJECT PORTFOLIO
           </p>
 
           <h2>
-            Premium plotted development at{" "}
+            Developments built around{" "}
             <span>
-              Bhuvanagiri.
+              trust and execution.
             </span>
           </h2>
 
           <p>
-            The supplied promotional material
-            describes a 200-acre resort-style mega
-            integrated township concept.
+            Explore SPM Green Tech & Developers&apos;
+            ongoing developments and completed
+            project portfolio.
           </p>
 
         </div>
 
+*/</section>
+        {/* =================================================
+            PROJECT CATEGORY NAVIGATION
+        ================================================= */}
 
-        <div className="project">
+        <div className="projectTabs">
 
-          <div className="projectImage">
-
-            <Image
-              src="/spmm.jpg"
-              alt="SPM Bhuvanagiri project"
-              fill
-              sizes="(max-width:600px) 100vw, 60vw"
-            />
-
-          </div>
-
-
-          <div className="projectInfo">
-
-            <span className="pill">
-              BHUVANAGIRI
+          <a
+            href="#ongoing-projects"
+            className="projectTab active"
+          >
+            <span>
+              01
             </span>
 
-            <h3>
-              200 Acres Resort-Style Mega
-              Integrated Township
-            </h3>
-
-            <p>
-              The material also lists Rusthapur,
-              M. Thurkappally and Gouraram and
-              mentions plot sizes including
-              121 sq yards.
-            </p>
+            Ongoing Projects
+          </a>
 
 
-            <div className="price">
+          <a
+            href="#completed-projects"
+            className="projectTab"
+          >
+            <span>
+              02
+            </span>
 
-              <small>
-                Promotional price shown in
-                supplied material
-              </small>
+            Completed Projects
+          </a>
 
-              <b>
-                ₹5,49,999/-
-              </b>
+        </div>
+
+
+        {/* =================================================
+            ONGOING PROJECTS
+        ================================================= */}
+
+        <div
+          id="ongoing-projects"
+          className="projectCategory"
+        >
+
+          <div className="projectCategoryHeading">
+
+            <div>
+
+              <p className="eyebrow">
+                SPM GROUP
+              </p>
+
+              <h3>
+                Ongoing Projects
+              </h3>
 
             </div>
 
 
-            <p className="note">
-              Pricing, availability and approvals
-              must be confirmed with SPM before
-              purchase.
-            </p>
+            <span className="projectCount">
+              {ongoingProjects.length} Project
+            </span>
+
+          </div>
 
 
-            <a
-              className="primaryBtn"
-              href="#contact"
-            >
-              Request Current Pricing
-            </a>
+          <div className="projectPortfolioGrid">
+
+            {ongoingProjects.map((project) => (
+
+              <article
+                className="portfolioCard"
+                key={project.number}
+              >
+
+                <div className="portfolioImage">
+
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    sizes="(max-width: 600px) 100vw, 50vw"
+                  />
+
+                  <div className="portfolioStatus">
+                    {project.status}
+                  </div>
+
+                </div>
+
+
+                <div className="portfolioContent">
+
+                  <div className="portfolioMeta">
+
+                    <span>
+                      {project.number}
+                    </span>
+
+                    <span>
+                      {project.location}
+                    </span>
+
+                  </div>
+
+
+                  <h3>
+                    {project.name}
+                  </h3>
+
+
+                  <h4>
+                    {project.title}
+                  </h4>
+
+
+                  <p>
+                    {project.description}
+                  </p>
+
+
+                  {project.price && (
+
+                    <div className="portfolioPrice">
+
+                      <small>
+                        Promotional price shown in supplied material
+                      </small>
+
+                      <strong>
+                        {project.price}
+                      </strong>
+
+                    </div>
+
+                  )}
+
+
+                  <a
+                    href="#contact"
+                    className="portfolioButton"
+                  >
+                    Request Project Details →
+                  </a>
+
+                </div>
+
+              </article>
+
+            ))}
+
+          </div>
+
+        </div>
+
+
+        {/* =================================================
+            COMPLETED PROJECTS
+        ================================================= }
+
+        <div
+          id="completed-projects"
+          className="projectCategory completedCategory"
+        >
+
+          <div className="projectCategoryHeading">
+
+            <div>
+
+              <p className="eyebrow">
+                SPM GROUP
+              </p>
+
+              <h3>
+                Completed Projects
+              </h3>
+
+            </div>
+
+
+            <span className="projectCount">
+              {completedProjects.length} Projects
+            </span>
+
+          </div>
+
+
+          <div className="projectPortfolioGrid">
+
+            {completedProjects.map((project) => (
+
+              <article
+                className="portfolioCard completedCard"
+                key={project.number}
+              >
+
+                <div className="portfolioImage">
+
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    sizes="(max-width: 600px) 100vw, 33vw"
+                  />
+
+                  <div className="portfolioStatus completedStatus">
+                    COMPLETED
+                  </div>
+
+                </div>
+
+
+                <div className="portfolioContent">
+
+                  <div className="portfolioMeta">
+
+                    <span>
+                      {project.number}
+                    </span>
+
+                    <span>
+                      {project.location}
+                    </span>
+
+                  </div>
+
+
+                  <h3>
+                    {project.name}
+                  </h3>
+
+
+                  <h4>
+                    {project.title}
+                  </h4>
+
+
+                  <p>
+                    {project.description}
+                  </p>
+
+
+                  <a
+                    href="#contact"
+                    className="portfolioButton"
+                  >
+                    Enquire About SPM →
+                  </a>
+
+                </div>
+
+              </article>
+
+            ))}
 
           </div>
 
@@ -793,16 +1128,11 @@ export default function Home() {
 
           {/* =================================================
               CONTACT CHOICE
-              All buttons and onClick handlers are inside
-              ContactChoice.tsx
           ================================================= */}
 
           <ContactChoice />
 
         </div>
-
-
-        
 
       </section>
 
