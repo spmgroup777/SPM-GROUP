@@ -1,16 +1,25 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+
+
+/* =========================================================
+   ONGOING PROJECTS
+========================================================= */
 
 const ongoingProjects = [
   {
     number: "01",
-    title: "200 Acres Resort-Style Mega Integrated Township",
+    title: "SPM (200 Acres Resort-Style Mega Integrated Township)",
     location: "Bhuvanagiri, Telangana",
     image: "/spmm.jpg",
     description:
       "A resort-style mega integrated township concept presented in the supplied SPM promotional material. The material also mentions Rusthapur, M. Thurkappally and Gouraram, with plot sizes including 121 sq yards.",
     price: "₹5,49,999/-",
     priceNote: "Promotional price shown in supplied material",
+    video: "/videos/project-01.mp4",
   },
 
   {
@@ -22,61 +31,71 @@ const ongoingProjects = [
       "An ongoing development project under SPM Group. Project details, specifications, pricing and availability can be updated with the official project information.",
     price: "Contact SPM",
     priceNote: "Current pricing and availability",
+    video: "/videos/project-02.mp4",
+  },
+
+  {
+    number: "03",
+    title: "THE EMERALD",
+    location: "Bhuvanagiri, Telangana",
+    image: "/EMERALD.jpeg",
+    description:
+      "An ongoing development project under SPM Group. Project details, specifications, pricing and availability can be updated with the official project information.",
+    price: "Contact SPM",
+    priceNote: "Current pricing and availability",
+    video: "/videos/project-03.mp4",
   },
 ];
 
-/*
+
+/* =========================================================
+   COMPLETED PROJECTS
+========================================================= */
+
 const completedProjects = [
   {
     number: "01",
     title: "Completed Project 01",
-    location: "SPM Group",
-    image: "/project-promo1.jpg",
+    location: "Jaipur, Telangana",
+    image: "/jaipur.jpeg",
     description:
-      "One of SPM's completed own development projects.",
+      "A completed development delivered by SPM Green Tech & Developers.",
+    video: "/videos/project-01.mp4",
   },
 
   {
     number: "02",
     title: "Completed Project 02",
-    location: "SPM Group",
-    image: "/project-brochure1.jpg",
+    location: "Ramagundam, Telangana",
+    image: "/gdk1.jpeg",
     description:
-      "One of SPM's completed own development projects.",
-  },
-
-  {
-    number: "03",
-    title: "Completed Project 03",
-    location: "SPM Group",
-    image: "/spmm.jpg",
-    description:
-      "One of SPM's completed own development projects.",
-  },
-
-  {
-    number: "04",
-    title: "Completed Project 04",
-    location: "SPM Group",
-    image: "/project-promo1.jpg",
-    description:
-      "One of SPM's completed own development projects.",
-  },
-
-  {
-    number: "05",
-    title: "Completed Project 05",
-    location: "SPM Group",
-    image: "/project-brochure1.jpg",
-    description:
-      "One of SPM's completed own development projects.",
+      "A completed development delivered by SPM Green Tech & Developers.",
+    video: "/videos/project-02.mp4",
   },
 ];
-*/
+
+
+/* =========================================================
+   PROJECTS PAGE
+========================================================= */
 
 export default function ProjectsPage() {
+
+  /*
+    Stores the video that is currently open.
+
+    null = no video open
+    "/videos/project-01.mp4" = video popup open
+  */
+
+  const [activeVideo, setActiveVideo] =
+    useState<string | null>(null);
+
+
   return (
+
     <main className="projectsPage">
+
 
       {/* =====================================================
           NAVIGATION
@@ -84,30 +103,49 @@ export default function ProjectsPage() {
 
       <header className="nav">
 
-        <Link href="/" className="brand">
+        <Link
+          href="/"
+          className="brand"
+        >
 
           <Image
-            src="/spm-group-logo.jpg"
+            src="/LOGO.png"
             alt="SPM Group"
-            width={64}
-            height={64}
+            width={1000}
+            height={1000}
           />
-
-          <div>
-            <b>SPM</b>
-            <span>GREEN TECH & DEVELOPERS</span>
-          </div>
 
         </Link>
 
+
         <nav>
-          <Link href="/#about">About</Link>
-          <Link href="/#leadership">Leadership</Link>
-          <Link href="/projects">Projects</Link>
-          <Link href="/#amenities">Amenities</Link>
-          <Link href="/#location">Location</Link>
-          <Link href="/#contact">Contact</Link>
+
+          <Link href="/#about">
+            About
+          </Link>
+
+          <Link href="/#leadership">
+            Leadership
+          </Link>
+
+          <Link href="/projects">
+            Projects
+          </Link>
+
+          <Link href="/#amenities">
+            Amenities
+          </Link>
+
+          <Link href="/#location">
+            Location
+          </Link>
+
+          <Link href="/#contact">
+            Contact
+          </Link>
+
         </nav>
+
 
         <Link
           className="navCta"
@@ -127,50 +165,17 @@ export default function ProjectsPage() {
 
         <div className="projectsHeroOverlay" />
 
-        <Image
-          src="/project-promo1.jpg"
-          alt="SPM real estate development"
-          fill
-          priority
-          sizes="100vw"
-          className="projectsHeroImage"
-        />
 
-        <div className="projectsHeroContent">
+        <video
+    className="projectsHeroVideo"
+    src="/videos/promo.mp4"
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+  />
 
-          <p className="eyebrow">
-            SPM PROJECT PORTFOLIO
-          </p>
-
-          <h1>
-            Developments built around
-            <span> trust and vision.</span>
-          </h1>
-
-          <p>
-            Explore SPM Group&apos;s ongoing development
-            and completed project portfolio.
-          </p>
-
-          <div className="projectsHeroButtons">
-
-            <a
-              href="#ongoing"
-              className="primaryBtn"
-            >
-              Ongoing Projects
-            </a>
-
-            <a
-              href="#completed"
-              className="glassBtn"
-            >
-              Completed Projects
-            </a>
-
-          </div>
-
-        </div>
 
       </section>
 
@@ -187,17 +192,22 @@ export default function ProjectsPage() {
             OUR PROJECTS
           </p>
 
+
           <h2>
             Explore the
             <span> SPM portfolio.</span>
           </h2>
 
+
           <p>
+             Explore SPM Group&apos;s ongoing development
+            and completed project portfolio.
             View current developments and completed
             projects under the SPM Group portfolio.
           </p>
 
         </div>
+
 
         <div className="projectTabs">
 
@@ -205,16 +215,27 @@ export default function ProjectsPage() {
             href="#ongoing"
             className="projectTab active"
           >
-            <span>01</span>
+
+            <span>
+              01
+            </span>
+
             Ongoing Projects
+
           </a>
+
 
           <a
             href="#completed"
             className="projectTab"
           >
-            <span>02</span>
+
+            <span>
+              02
+            </span>
+
             Completed Projects
+
           </a>
 
         </div>
@@ -239,6 +260,7 @@ export default function ProjectsPage() {
               CURRENT DEVELOPMENT
             </p>
 
+
             <h2>
               Ongoing
               <span> Projects.</span>
@@ -246,12 +268,19 @@ export default function ProjectsPage() {
 
           </div>
 
+
           <div className="projectCount">
+
             {ongoingProjects.length} Ongoing Projects
+
           </div>
 
         </div>
 
+
+        {/* ===================================================
+            ONGOING PROJECT GRID
+        =================================================== */}
 
         <div className="projectPortfolioGrid">
 
@@ -262,6 +291,11 @@ export default function ProjectsPage() {
               className="portfolioCard ongoingCard"
             >
 
+
+              {/* =================================================
+                  PROJECT IMAGE
+              ================================================= */}
+
               <div className="portfolioImage">
 
                 <Image
@@ -271,6 +305,7 @@ export default function ProjectsPage() {
                   sizes="(max-width: 600px) 100vw, 50vw"
                 />
 
+
                 <div className="portfolioStatus">
                   ONGOING
                 </div>
@@ -278,13 +313,21 @@ export default function ProjectsPage() {
               </div>
 
 
+              {/* =================================================
+                  PROJECT CONTENT
+              ================================================= */}
+
               <div className="portfolioContent">
+
+
+                {/* PROJECT NUMBER + LOCATION */}
 
                 <div className="portfolioMeta">
 
                   <span>
                     {project.number}
                   </span>
+
 
                   <span>
                     {project.location}
@@ -293,15 +336,23 @@ export default function ProjectsPage() {
                 </div>
 
 
+                {/* PROJECT TITLE */}
+
                 <h3>
                   {project.title}
                 </h3>
 
 
+                {/* PROJECT DESCRIPTION */}
+
                 <p>
                   {project.description}
                 </p>
 
+
+                {/* =================================================
+                    PROJECT PRICE
+                ================================================= */}
 
                 <div className="portfolioPrice">
 
@@ -313,6 +364,7 @@ export default function ProjectsPage() {
 
                   </div>
 
+
                   <strong>
                     {project.price}
                   </strong>
@@ -320,12 +372,42 @@ export default function ProjectsPage() {
                 </div>
 
 
+                {/* NOTE */}
+
                 <p className="note">
                   Pricing, availability and approvals
                   must be confirmed with SPM before
                   purchase.
                 </p>
 
+
+                {/* =================================================
+                    VIDEO BUTTON
+                ================================================= */}
+
+                <button
+                  type="button"
+                  className="projectVideoButton"
+                  onClick={() =>
+                    setActiveVideo(project.video)
+                  }
+                >
+
+                  <span className="videoIcon">
+                    ▶
+                  </span>
+
+
+                  <span>
+                    Click Here to Watch Project Video
+                  </span>
+
+                </button>
+
+
+                {/* =================================================
+                    CONTACT BUTTON
+                ================================================= */}
 
                 <Link
                   href="/#contact"
@@ -354,6 +436,11 @@ export default function ProjectsPage() {
         className="section projectCategorySection completedProjectsSection"
       >
 
+
+        {/* ===================================================
+            COMPLETED PROJECT HEADING
+        =================================================== */}
+
         <div className="projectCategoryHeading">
 
           <div>
@@ -362,6 +449,7 @@ export default function ProjectsPage() {
               PROJECT EXPERIENCE
             </p>
 
+
             <h2>
               Completed
               <span> Projects.</span>
@@ -369,30 +457,36 @@ export default function ProjectsPage() {
 
           </div>
 
+
           <div className="projectCount">
-            5 Own Projects
+
+            {completedProjects.length} Completed Projects
+
           </div>
 
         </div>
 
 
+        {/* ===================================================
+            COMPLETED INTRO
+        =================================================== */}
+
         <div className="completedIntro">
 
           <p>
-            SPM&apos;s supplied company profile states that
-            the group has completed five own projects.
-            The individual project names were not included
-            in the supplied material, so they should be
-            replaced with the official project names before
-            publishing this section.
+            Explore selected completed developments
+            delivered by SPM Green Tech & Developers.
           </p>
 
         </div>
 
 
+        {/* ===================================================
+            COMPLETED PROJECT GRID
+        =================================================== */}
+
         <div className="projectPortfolioGrid">
 
-          {/*
           {completedProjects.map((project) => (
 
             <article
@@ -400,14 +494,20 @@ export default function ProjectsPage() {
               className="portfolioCard completedCard"
             >
 
+
+              {/* =================================================
+                  PROJECT IMAGE
+              ================================================= */}
+
               <div className="portfolioImage">
 
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  sizes="(max-width: 600px) 100vw, 50vw"
+                  sizes="(max-width: 700px) 100vw, 50vw"
                 />
+
 
                 <div className="portfolioStatus completedStatus">
                   COMPLETED
@@ -416,7 +516,14 @@ export default function ProjectsPage() {
               </div>
 
 
+              {/* =================================================
+                  PROJECT CONTENT
+              ================================================= */}
+
               <div className="portfolioContent">
+
+
+                {/* NUMBER + LOCATION */}
 
                 <div className="portfolioMeta">
 
@@ -424,19 +531,53 @@ export default function ProjectsPage() {
                     {project.number}
                   </span>
 
+
                   <span>
                     {project.location}
                   </span>
 
                 </div>
 
+
+                {/* TITLE */}
+
                 <h3>
                   {project.title}
                 </h3>
 
+
+                {/* DESCRIPTION */}
+
                 <p>
                   {project.description}
                 </p>
+
+
+                {/* =================================================
+                    COMPLETED PROJECT VIDEO
+                ================================================= */}
+
+                <button
+                  type="button"
+                  className="projectVideoButton"
+                  onClick={() =>
+                    setActiveVideo(project.video)
+                  }
+                >
+
+                  <span className="videoIcon">
+                    ▶
+                  </span>
+
+
+                  <span>
+                    Click Here to Watch Project Video
+                  </span>
+
+                </button>
+
+
+                {/* CONTACT */}
 
                 <Link
                   href="/#contact"
@@ -450,7 +591,6 @@ export default function ProjectsPage() {
             </article>
 
           ))}
-          */}
 
         </div>
 
@@ -458,7 +598,61 @@ export default function ProjectsPage() {
 
 
       {/* =====================================================
-          PROJECT EXPERIENCE
+          PROJECT VIDEO POPUP
+      ===================================================== */}
+
+      {activeVideo && (
+
+        <div
+          className="projectVideoOverlay"
+          onClick={() => setActiveVideo(null)}
+        >
+
+          <div
+            className="projectVideoModal"
+            onClick={(event) =>
+              event.stopPropagation()
+            }
+          >
+
+
+            {/* =================================================
+                CLOSE BUTTON
+            ================================================= */}
+
+            <button
+              type="button"
+              className="projectVideoClose"
+              onClick={() =>
+                setActiveVideo(null)
+              }
+              aria-label="Close video"
+            >
+              ×
+            </button>
+
+
+            {/* =================================================
+                VIDEO
+            ================================================= */}
+
+            <video
+              src={activeVideo}
+              controls
+              autoPlay
+              playsInline
+              className="projectVideoPlayer"
+            />
+
+          </div>
+
+        </div>
+
+      )}
+
+
+      {/* =====================================================
+          PROJECT EXPERIENCE CTA
       ===================================================== */}
 
       <section className="cta projectsCTA">
@@ -467,17 +661,20 @@ export default function ProjectsPage() {
           SPM GREEN TECH & DEVELOPERS
         </p>
 
+
         <h2>
           Building today.
           <br />
           <span>Shaping tomorrow.</span>
         </h2>
 
+
         <p>
           Interested in an SPM development?
           Contact the team to arrange a site visit
           or request current project information.
         </p>
+
 
         <Link
           href="/#contact"
@@ -504,9 +701,13 @@ export default function ProjectsPage() {
             height={55}
           />
 
+
           <div>
 
-            <b>SPM</b>
+            <b>
+              SPM
+            </b>
+
 
             <span>
               GREEN TECH & DEVELOPERS
@@ -516,6 +717,7 @@ export default function ProjectsPage() {
 
         </div>
 
+
         <p>
           © 2026 SPM Green Tech & Developers.
           Information presented from supplied
@@ -523,6 +725,7 @@ export default function ProjectsPage() {
         </p>
 
       </footer>
+
 
     </main>
   );

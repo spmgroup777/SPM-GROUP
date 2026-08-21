@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+
 import LocationDirections from "./LocationDirections";
 /*import CallbackForm from "./CallbackForm";*/
 import ContactChoice from "./ContactChoice";
@@ -14,6 +18,89 @@ const stats = [
   ["10", "Associate projects completed"],
   ["500+", "Customers"],
   ["50+", "Team members"],
+];
+
+const corridors = [
+  {
+    number: "01",
+    title: "IT Raheja",
+    location: "Bhuvanagiri, Telangana",
+    image: "/corridors/it.png",
+  },
+  {
+    number: "02",
+    title: "AIIMS",
+    location: "Bhuvanagiri, Telangana",
+    image: "/corridors/aiims.png",
+  },
+  {
+    number: "03",
+    title: "DRDO",
+    location: "Bhuvanagiri, Telangana",
+    image: "/corridors/drdo.png",
+  },
+  {
+    number: "04",
+    title: "Industrial Parks",
+    location: "Bhuvanagiri, Telangana",
+    image: "/corridors/industrialparks.png",
+  },
+  {
+    number: "05",
+    title: "Genome Valley",
+    location: "Bhuvanagiri, Telangana",
+    image: "/corridors/genome.png",
+  },
+  {
+    number: "06",
+    title: "Infosys",
+    location: "Bhuvanagiri, Telangana",
+    image: "/corridors/infosys.png",
+  },
+  {
+    number: "07",
+    title: "Yadagirigutta",
+    location: "Bhuvanagiri, Telangana",
+    image: "/corridors/yadagiri.png",
+  },
+  {
+    number: "08",
+    title: "Swarnagiri Temple",
+    location: "Bhuvanagiri, Telangana",
+    image: "/corridors/swarnagiri.png",
+  },
+  {
+    number: "08",
+    title: "Regional Ring Rail",
+    location: "Bhuvanagiri, Telangana",
+    image: "/corridors/rrr1.png",
+  },
+  {
+    number: "08",
+    title: "Regional Ring Road",
+    location: "Bhuvanagiri, Telangana",
+    image: "/corridors/rrr.png",
+  },
+  {
+    number: "08",
+    title: "Bhuvanagiri Fort",
+    location: "Bhuvanagiri, Telangana",
+    image: "/corridors/fort.png",
+  },
+];
+
+const surroundingImages = [
+  "/surrounding/it-raheja.jpg",
+  "/surrounding/aiims.jpg",
+  "/surrounding/drdo.jpg",
+  "/surrounding/industrial-park.jpg",
+  "/surrounding/genome-valley.jpg",
+  "/surrounding/infosys.jpg",
+  "/surrounding/yadagirigutta.jpg",
+  "/surrounding/swarnagiri.jpg",
+  "/surrounding/regional-ring-road.jpg",
+  "/surrounding/regional-ring-rail.jpg",
+  "/surrounding/bhuvanagiri-fort.jpg",
 ];
 
 
@@ -82,6 +169,38 @@ const amenities = [
 
 
 /* =========================================================
+   SPM OFFICE / COMPANY PHOTO GALLERY
+   ========================================================= */
+
+const officeGalleryPhotos = [
+  {
+    image: "/spm-photo0.jpeg",
+    alt: "SPM Green Tech and Developers",
+  },
+  {
+    image: "/spm-photo1.jpeg",
+    alt: "SPM project development",
+  },
+  {
+    image: "/spm-photo2.jpeg",
+    alt: "SPM team and company",
+  },
+  {
+    image: "/spm-photo3.jpeg",
+    alt: "SPM real estate development",
+  },
+  {
+    image: "/spm-photo4.jpeg",
+    alt: "SPM Green Tech and Developers project",
+  },
+  {
+    image: "/spm-photo5.jpeg",
+    alt: "SPM company event",
+  },
+];
+
+
+/* =========================================================
    SURROUNDING DEVELOPMENTS
    ========================================================= */
 
@@ -109,14 +228,14 @@ const distances = [
   ["10 min", "200 Feet Road"],
   ["15 min", "Bhuvanagiri Railway Station"],
   ["15 min", "Swarnagiri Temple"],
-  ["20 min", "AIIMS"],
-  ["20 min", "IT Sector"],
-  ["20 min", "Regional Ring Road"],
-  ["20 min", "Regional Ring Rail"],
-  ["28 min", "Industrial Park"],
-  ["30 min", "Keesara Toll Plaza"],
-  ["30 min", "Pragnapur"],
-  ["40 min", "JBS Bus Stand"],
+  ["30 min", "AIIMS"],
+  ["30 min", "IT Sector"],
+  ["25 min", "Regional Ring Road"],
+  ["25 min", "Regional Ring Rail"],
+  ["30 min", "Industrial Park"],
+  ["40 min", "Keesara Toll Plaza"],
+  ["45 min", "Pragnapur"],
+  ["50 min", "JBS Bus Stand"],
   ["45 min", "ECIL"],
 ];
 
@@ -142,19 +261,8 @@ const ongoingProjects = [
 
 /* =========================================================
    COMPLETED PROJECTS
-   =========================================================
-
-   IMPORTANT:
-   The supplied company information confirms:
-   - 5 own projects completed
-   - 10 associate projects completed
-
-   Individual completed-project names were not included
-   in the supplied page.tsx, so they are not invented here.
-
-   Replace the names and images below with the actual
-   completed project information when you have it.
    ========================================================= */
+
 /*
 const completedProjects = [
   {
@@ -207,7 +315,8 @@ const completedProjects = [
     description:
       "Completed project delivered by SPM Green Tech & Developers.",
   },
-];*/
+];
+*/
 
 
 /* =========================================================
@@ -215,9 +324,27 @@ const completedProjects = [
    ========================================================= */
 
 export default function Home() {
+
+  /* =========================================================
+     MOBILE MENU STATE
+     ========================================================= */
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const [showOfficePhotos, setShowOfficePhotos] = useState(false);
+
+
+  /* =========================================================
+     CLOSE MOBILE MENU
+     ========================================================= */
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
+
+
   return (
     <main>
-
 
       {/* =====================================================
           NAVIGATION
@@ -225,27 +352,31 @@ export default function Home() {
 
       <header className="nav">
 
+        {/* ===================================================
+            BRAND / LOGO
+        =================================================== */}
+
         <a
           href="#home"
           className="brand"
+          onClick={closeMobileMenu}
         >
 
           <Image
-            src="/spm-group-logo.jpg"
+            src="/LOGO.png"
             alt="SPM Group"
-            width={54}
-            height={54}
+            width={1000}
+            height={1000}
           />
-
-          <div>
-            <b>SPM</b>
-            <span>GREEN TECH & DEVELOPERS</span>
-          </div>
 
         </a>
 
 
-        <nav>
+        {/* ===================================================
+            DESKTOP NAVIGATION
+        =================================================== */}
+
+        <nav className="desktopNav">
 
           <a href="#about">
             About
@@ -274,14 +405,127 @@ export default function Home() {
         </nav>
 
 
+        {/* ===================================================
+            DESKTOP CTA
+        =================================================== */}
+
         <a
-          className="navCta"
+          className="navCta desktopCta"
           href="#contact"
         >
-          Book a Site Visit
+          Book your site visit
         </a>
 
+
+        {/* ===================================================
+            MOBILE MENU BUTTON
+        =================================================== */}
+
+        <button
+          type="button"
+          className={`mobileMenuButton ${
+            mobileMenuOpen ? "open" : ""
+          }`}
+          aria-label={
+            mobileMenuOpen
+              ? "Close navigation menu"
+              : "Open navigation menu"
+          }
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() =>
+            setMobileMenuOpen((current) => !current)
+          }
+        >
+
+          <span></span>
+          <span></span>
+          <span></span>
+
+        </button>
+
       </header>
+
+
+      {/* =====================================================
+          MOBILE NAVIGATION MENU
+      ===================================================== */}
+
+      <div
+        id="mobile-navigation"
+        className={`mobileMenu ${
+          mobileMenuOpen ? "mobileMenuOpen" : ""
+        }`}
+        aria-hidden={!mobileMenuOpen}
+      >
+
+        <div className="mobileMenuInner">
+
+          <a
+            href="#about"
+            onClick={closeMobileMenu}
+          >
+            <span>01</span>
+            About
+          </a>
+
+
+          <a
+            href="#leadership"
+            onClick={closeMobileMenu}
+          >
+            <span>02</span>
+            Leadership
+          </a>
+
+
+          <a
+            href="/projects"
+            onClick={closeMobileMenu}
+          >
+            <span>03</span>
+            Projects
+          </a>
+
+
+          <a
+            href="#amenities"
+            onClick={closeMobileMenu}
+          >
+            <span>04</span>
+            Amenities
+          </a>
+
+
+          <a
+            href="#location"
+            onClick={closeMobileMenu}
+          >
+            <span>05</span>
+            Location
+          </a>
+
+
+          <a
+            href="#contact"
+            onClick={closeMobileMenu}
+          >
+            <span>06</span>
+            Contact
+          </a>
+
+
+          <a
+            className="mobileMenuCta"
+            href="#contact"
+            onClick={closeMobileMenu}
+          >
+            Book your site visit
+          </a>
+
+        </div>
+
+      </div>
 
 
       {/* =====================================================
@@ -295,7 +539,7 @@ export default function Home() {
 
         <Image
           className="heroImage"
-          src="/project-promo1.jpg"
+          src="/project-promo2.png"
           alt="SPM project"
           fill
           priority
@@ -337,18 +581,21 @@ export default function Home() {
 
 
           <h1>
-            Where Dreams Find Direction
+            Where Dreams 
             <span></span>
           </h1>
-
-
+          <h2>
+            Find Directions!
+            <span></span>
+          </h2>
           <p>
             Explore SPM&apos;s plotted developments,
-            community concepts and connectivity-led
+            community concepts and 
+            connectivity-led
             locations around Bhuvanagiri and
             surrounding growth corridors.
           </p>
-
+          
 
           <div className="buttons">
 
@@ -371,23 +618,6 @@ export default function Home() {
         </div>
 
 
-        <div className="heroStats">
-
-          {[
-            ["10+", "Experience"],
-            ["500+", "Customers"],
-            ["15", "Projects"],
-            ["24/7", "Security"],
-          ].map((item) => (
-
-            <div key={item[1]}>
-              <b>{item[0]}</b>
-              <span>{item[1]}</span>
-            </div>
-
-          ))}
-
-        </div>
 
       </section>
 
@@ -530,7 +760,7 @@ export default function Home() {
           <h2>
             Leadership backed by{" "}
             <span>
-              real-estate experience.
+              REAL-ESTATE experience.
             </span>
           </h2>
 
@@ -565,11 +795,11 @@ export default function Home() {
 
       </section>
 
-
       {/* =====================================================
-          PROJECTS
+          PROJECTS SECTION — COMMENTED OUT FROM MAIN PAGE
       ===================================================== */}
 
+      {/*
       <section
         id="project"
         className="section projectSection"
@@ -596,10 +826,6 @@ export default function Home() {
 
         </div>
 
-*/</section>
-        {/* =================================================
-            PROJECT CATEGORY NAVIGATION
-        ================================================= */}
 
         <div className="projectTabs">
 
@@ -628,10 +854,6 @@ export default function Home() {
 
         </div>
 
-
-        {/* =================================================
-            ONGOING PROJECTS
-        ================================================= */}
 
         <div
           id="ongoing-projects"
@@ -750,10 +972,6 @@ export default function Home() {
         </div>
 
 
-        {/* =================================================
-            COMPLETED PROJECTS
-        ================================================= }
-
         <div
           id="completed-projects"
           className="projectCategory completedCategory"
@@ -775,85 +993,16 @@ export default function Home() {
 
 
             <span className="projectCount">
-              {completedProjects.length} Projects
+              Completed Projects
             </span>
 
           </div>
 
 
-          <div className="projectPortfolioGrid">
-
-            {completedProjects.map((project) => (
-
-              <article
-                className="portfolioCard completedCard"
-                key={project.number}
-              >
-
-                <div className="portfolioImage">
-
-                  <Image
-                    src={project.image}
-                    alt={project.name}
-                    fill
-                    sizes="(max-width: 600px) 100vw, 33vw"
-                  />
-
-                  <div className="portfolioStatus completedStatus">
-                    COMPLETED
-                  </div>
-
-                </div>
-
-
-                <div className="portfolioContent">
-
-                  <div className="portfolioMeta">
-
-                    <span>
-                      {project.number}
-                    </span>
-
-                    <span>
-                      {project.location}
-                    </span>
-
-                  </div>
-
-
-                  <h3>
-                    {project.name}
-                  </h3>
-
-
-                  <h4>
-                    {project.title}
-                  </h4>
-
-
-                  <p>
-                    {project.description}
-                  </p>
-
-
-                  <a
-                    href="#contact"
-                    className="portfolioButton"
-                  >
-                    Enquire About SPM →
-                  </a>
-
-                </div>
-
-              </article>
-
-            ))}
-
-          </div>
-
         </div>
 
       </section>
+      */}
 
 
       {/* =====================================================
@@ -918,51 +1067,6 @@ export default function Home() {
                 </span>
 
               </div>
-
-            </article>
-
-          ))}
-
-        </div>
-
-      </section>
-
-
-      {/* =====================================================
-          SURROUNDING DEVELOPMENTS
-      ===================================================== */}
-
-      <section className="section surrounding">
-
-        <div className="heading center">
-
-          <p className="eyebrow">
-            SURROUNDING DEVELOPMENTS
-          </p>
-
-          <h2>
-            Connected to important{" "}
-            <span>
-              growth corridors.
-            </span>
-          </h2>
-
-        </div>
-
-
-        <div className="surroundGrid">
-
-          {surroundings.map((item, index) => (
-
-            <article key={item}>
-
-              <small>
-                {String(index + 1).padStart(2, "0")}
-              </small>
-
-              <b>
-                {item}
-              </b>
 
             </article>
 
@@ -1059,7 +1163,7 @@ export default function Home() {
 
 
         <Image
-          src="/route-map.jpeg"
+          src="/Route-map.png"
           alt="SPM route map"
           width={1800}
           height={1200}
@@ -1099,6 +1203,236 @@ export default function Home() {
 
 
       {/* =====================================================
+          MANCHERIAL OFFICE
+      ===================================================== */}
+
+      <section
+        id="mancherial-office"
+        className="section officeSection"
+      >
+
+        {/* =================================================
+            OFFICE HEADING
+        ================================================= */}
+
+        <div className="heading center">
+
+          <p className="eyebrow">
+            VISIT SPM
+          </p>
+
+          <h2>
+            Our Mancherial
+            <span> Office.</span>
+          </h2>
+
+          <p>
+            Visit the SPM Green Tech & Developers
+            Mancherial branch and meet our team
+            to discuss projects, site visits and
+            current developments.
+          </p>
+
+        </div>
+
+
+        {/* =================================================
+            OFFICE LAYOUT
+        ================================================= */}
+
+        <div className="officeLayout">
+
+
+          {/* =================================================
+              OFFICE INFORMATION
+          ================================================= */}
+
+          <div className="officeDetails">
+
+            <p className="eyebrow">
+              MANCHERIAL BRANCH
+            </p>
+
+            <h3>
+              Meet the SPM team.
+            </h3>
+
+            <p className="officeDescription">
+              Our Mancherial office is where customers
+              can meet the SPM team, discuss projects,
+              understand available developments and
+              arrange site visits.
+            </p>
+
+
+            {/* ADDRESS */}
+<div className="officeDetailItem1">
+
+  <div className="officeDetailIcon1">
+    📍
+  </div>
+
+  <div className="officeDetailText1">
+
+    <strong>
+      SPM Mancherial Office
+    </strong>
+
+    <span>
+      Mancherial, Telangana
+    </span>
+
+  </div>
+
+</div>
+
+
+  
+
+            {/* BUTTONS */}
+
+            <div className="officeButtons">
+
+              <a
+                href="#contact"
+                className="primaryBtn"
+              >
+                Contact SPM →
+              </a>
+
+              <a
+  href="https://www.google.com/maps/dir/?api=1&destination=SPM+Green+Tech+%26+Developers%2C+Mancherial%2C+Telangana"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="officeDirectionButton"
+>
+  Get Directions →
+</a>
+
+            </div>
+
+          </div>
+
+
+          {/* =================================================
+              OFFICE PHOTOS
+          ================================================= */}
+
+          <div className="officeGallery">
+
+            {/* =================================================
+                FIRST 3 PHOTOS
+            ================================================= */}
+
+            <div className="officePhotos">
+
+              <div className="officeMainPhoto">
+
+                <Image
+                  src="/mancherialoffice1.jpeg"
+                  alt="SPM Green Tech and Developers Mancherial office"
+                  fill
+                  sizes="(max-width: 700px) 100vw, 50vw"
+                />
+
+              </div>
+
+
+              <div className="officeSmallPhotos">
+
+                <div className="officeSmallPhoto">
+
+                  <Image
+                    src="/ofcc.jpeg"
+                    alt="SPM Mancherial office interior"
+                    fill
+                    sizes="(max-width: 700px) 50vw, 25vw"
+                  />
+
+                </div>
+
+
+                <div className="officeSmallPhoto">
+
+                  <Image
+                    src="/spm-photo1.jpeg"
+                    alt="SPM Green Tech and Developers team"
+                    fill
+                    sizes="(max-width: 700px) 50vw, 25vw"
+                  />
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            {/* =================================================
+                SEE MORE PHOTOS BUTTON
+            ================================================= */}
+
+            <button
+              type="button"
+              className="seeMorePhotosButton"
+              onClick={() =>
+                setShowOfficePhotos((current) => !current)
+              }
+              aria-expanded={showOfficePhotos}
+            >
+
+              <span>
+                {showOfficePhotos ? "−" : "+"}
+              </span>
+
+              {showOfficePhotos
+                ? "Show Less Photos"
+                : "See More Photos"}
+
+            </button>
+
+
+            {/* =================================================
+                ADDITIONAL PHOTOS
+            ================================================= */}
+
+            {showOfficePhotos && (
+
+              <div className="moreOfficePhotos">
+
+                {officeGalleryPhotos.map((photo, index) => (
+
+                  <div
+                    className="moreOfficePhoto"
+                    key={photo.image}
+                  >
+
+                    <Image
+                      src={photo.image}
+                      alt={photo.alt}
+                      fill
+                      sizes="(max-width: 600px) 100vw, (max-width: 950px) 50vw, 25vw"
+                    />
+
+                    <div className="moreOfficePhotoNumber">
+                      {String(index + 4).padStart(2, "0")}
+                    </div>
+
+                  </div>
+
+                ))}
+
+              </div>
+
+            )}
+
+          </div>
+
+
+        </div>
+
+      </section>
+      {/* =====================================================
           CONTACT
       ===================================================== */}
 
@@ -1125,10 +1459,6 @@ export default function Home() {
             & Developers
           </p>
 
-
-          {/* =================================================
-              CONTACT CHOICE
-          ================================================= */}
 
           <ContactChoice />
 
