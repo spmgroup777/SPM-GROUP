@@ -386,7 +386,7 @@ export default function Home() {
             Leadership
           </a>
 
-          <a href="/Projects">
+          <a href="/projects">
             Projects
           </a>
 
@@ -480,7 +480,7 @@ export default function Home() {
 
 
           <a
-            href="/Projects"
+            href="/projects"
             onClick={closeMobileMenu}
           >
             <span>03</span>
@@ -601,7 +601,7 @@ export default function Home() {
 
             <a
               className="primaryBtn"
-              href="/Projects"
+              href="/projects"
             >
               Explore Projects
             </a>
