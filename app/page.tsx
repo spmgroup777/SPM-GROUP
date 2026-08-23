@@ -1301,7 +1301,7 @@ export default function Home() {
               </a>
 
               <a
-  href="https://www.google.com/maps/dir/?api=1&destination=SPM+Green+Tech+%26+Developers%2C+Mancherial%2C+Telangana"
+  href="https://www.google.com/maps/place/Hi-tech+City,+13,+Mancherial+Rd,+Hitech+Colony,+Mancherial,+Telangana+504208/@18.8921047,79.4435838,17z/data=!3m1!4b1!4m6!3m5!1s0x3a32b58bf4de7307:0x20d54c211aef33ab!8m2!3d18.8921047!4d79.4435838!16s%2Fg%2F11wb2mhvbt!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDgxOS4wIKXMDSoASAFQAw%3D%3D"
   target="_blank"
   rel="noopener noreferrer"
   className="officeDirectionButton"
