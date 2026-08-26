@@ -3598,16 +3598,78 @@ footer p {
 /* =========================================================
    MOBILE HERO
 ========================================================= */
+/* =========================================================
+   HERO SECTION
+   ========================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 720px;
+
+  padding: 140px 7% 120px;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  background: #ffffff;
+}
+
+/* Background image */
+
+.heroImage {
+  object-fit: cover !important;
+  object-position: center center;
+
+  z-index: 0;
+}
+
+/* Overlay */
+
+.heroShade {
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.82) 0%,
+      rgba(255, 255, 255, 0.45) 45%,
+      rgba(255, 255, 255, 0.08) 100%
+    );
+}
+
+/* Content */
+
+.heroContent {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 750px;
+}
+
+
+/* =========================================================
+   MOBILE HERO
+   ========================================================= */
 
 @media (max-width: 600px) {
 
   .hero {
-    height: 100svh;
-    min-height: 720px;
+    min-height: 100svh;
 
-    padding: 95px 6% 70px;
+    height: auto;
+
+    padding:
+      115px
+      6%
+      70px;
 
     display: flex;
+
     align-items: center;
   }
 
@@ -3615,33 +3677,107 @@ footer p {
     object-fit: cover !important;
 
     /*
-      Adjusts which part of the image stays visible.
-      Keeps the main building/project area visible.
+      Shows a better balanced portion of the image
+      on mobile.
     */
-    object-position: 68% center;
+    object-position: 58% center;
   }
 
   .heroShade {
     background:
       linear-gradient(
         90deg,
-        rgba(255, 255, 255, 0.78) 0%,
-        rgba(255, 255, 255, 0.38) 48%,
-        rgba(255, 255, 255, 0.08) 100%
+        rgba(255, 255, 255, 0.82) 0%,
+        rgba(255, 255, 255, 0.55) 52%,
+        rgba(255, 255, 255, 0.12) 100%
       ),
       linear-gradient(
-        0deg,
-        rgba(13, 27, 42, 0.35),
-        transparent 65%
+        180deg,
+        rgba(255, 255, 255, 0.10) 0%,
+        rgba(13, 27, 42, 0.15) 100%
       );
   }
 
   .heroContent {
-    top: 0;
+    width: 100%;
 
     max-width: 100%;
   }
 
+  .heroBrand {
+    transform: scale(0.88);
+
+    transform-origin: left center;
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 13vw, 68px);
+
+    line-height: 0.95;
+
+    letter-spacing: -2px;
+  }
+
+  .hero h2 {
+    font-size: clamp(46px, 12vw, 64px);
+
+    line-height: 0.95;
+
+    letter-spacing: -2px;
+  }
+
+  .heroContent > p:not(.eyebrow) {
+    font-size: 16px;
+
+    line-height: 1.65;
+
+    padding: 16px 18px;
+  }
+
+  .buttons {
+    width: 100%;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    margin-top: 24px;
+  }
+
+  .primaryBtn,
+  .glassBtn {
+    width: 100%;
+
+    text-align: center;
+
+    justify-content: center;
+  }
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .hero {
+    padding-top: 100px;
+
+    padding-bottom: 55px;
+  }
+
+  .hero h1 {
+    font-size: 46px;
+  }
+
+  .hero h2 {
+    font-size: 44px;
+  }
+
+  .heroContent > p:not(.eyebrow) {
+    font-size: 14px;
+  }
 }/* =========================================================
    COMPLETED PROJECT VIDEO BUTTON
 ========================================================= */
