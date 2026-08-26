@@ -3595,20 +3595,51 @@ footer p {
    MOBILE
    ========================================================= */
 
+/* =========================================================
+   MOBILE HERO
+========================================================= */
+
 @media (max-width: 600px) {
 
   .hero {
-    aspect-ratio: auto;
+    height: 100svh;
+    min-height: 720px;
 
-    min-height: 760px;
+    padding: 95px 6% 70px;
 
-    height: 760px;
-
-    padding: 115px 6% 120px;
+    display: flex;
+    align-items: center;
   }
 
   .heroImage {
-    object-fit: fill !important;
+    object-fit: cover !important;
+
+    /*
+      Adjusts which part of the image stays visible.
+      Keeps the main building/project area visible.
+    */
+    object-position: 68% center;
+  }
+
+  .heroShade {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.78) 0%,
+        rgba(255, 255, 255, 0.38) 48%,
+        rgba(255, 255, 255, 0.08) 100%
+      ),
+      linear-gradient(
+        0deg,
+        rgba(13, 27, 42, 0.35),
+        transparent 65%
+      );
+  }
+
+  .heroContent {
+    top: 0;
+
+    max-width: 100%;
   }
 
 }/* =========================================================
