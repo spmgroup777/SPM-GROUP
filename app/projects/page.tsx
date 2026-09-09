@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-
 /* =========================================================
    ONGOING PROJECTS
 ========================================================= */
@@ -76,17 +75,37 @@ const completedProjects = [
 
 
 /* =========================================================
+   ASSOCIATED PROJECTS
+========================================================= */
+
+const associatedProjects = [
+  {
+    number: "01",
+    title: "Associated Project 01",
+    location: "Telangana",
+    image: "/mancherialoffice1.jpeg",
+    description:
+      "An associated development project connected with the SPM Group project portfolio.",
+    video: "/project-01.mp4",
+  },
+
+  {
+    number: "02",
+    title: "Associated Project 02",
+    location: "Telangana",
+    image: "/ofcc.jpeg",
+    description:
+      "An associated project representing SPM Group's development experience and partnerships.",
+    video: "/project-02.mp4",
+  },
+];
+
+
+/* =========================================================
    PROJECTS PAGE
 ========================================================= */
 
 export default function ProjectsPage() {
-
-  /*
-    Stores the video that is currently open.
-
-    null = no video open
-    "/videos/project-01.mp4" = video popup open
-  */
 
   const [activeVideo, setActiveVideo] =
     useState<string | null>(null);
@@ -165,17 +184,15 @@ export default function ProjectsPage() {
 
         <div className="projectsHeroOverlay" />
 
-
         <video
-    className="projectsHeroVideo"
-    src="/promo.mp4"
-    autoPlay
-    muted
-    loop
-    playsInline
-    preload="auto"
-  />
-
+          className="projectsHeroVideo"
+          src="/promo.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        />
 
       </section>
 
@@ -200,16 +217,20 @@ export default function ProjectsPage() {
 
 
           <p>
-             Explore SPM Group&apos;s ongoing development
+            Explore SPM Group&apos;s ongoing development
             and completed project portfolio.
-            View current developments and completed
-            projects under the SPM Group portfolio.
+            View current developments, completed
+            and associated projects under the
+            SPM Group portfolio.
           </p>
 
         </div>
 
 
         <div className="projectTabs">
+
+
+          {/* ONGOING */}
 
           <a
             href="#ongoing"
@@ -225,6 +246,8 @@ export default function ProjectsPage() {
           </a>
 
 
+          {/* COMPLETED */}
+
           <a
             href="#completed"
             className="projectTab"
@@ -237,6 +260,23 @@ export default function ProjectsPage() {
             Completed Projects
 
           </a>
+
+
+          {/* ASSOCIATED */}
+
+          <a
+            href="#associated"
+            className="projectTab"
+          >
+
+            <span>
+              03
+            </span>
+
+            Associated Projects
+
+          </a>
+
 
         </div>
 
@@ -292,9 +332,7 @@ export default function ProjectsPage() {
             >
 
 
-              {/* =================================================
-                  PROJECT IMAGE
-              ================================================= */}
+              {/* PROJECT IMAGE */}
 
               <div className="portfolioImage">
 
@@ -313,9 +351,7 @@ export default function ProjectsPage() {
               </div>
 
 
-              {/* =================================================
-                  PROJECT CONTENT
-              ================================================= */}
+              {/* PROJECT CONTENT */}
 
               <div className="portfolioContent">
 
@@ -350,9 +386,7 @@ export default function ProjectsPage() {
                 </p>
 
 
-                {/* =================================================
-                    PROJECT PRICE
-                ================================================= */}
+                {/* PROJECT PRICE */}
 
                 <div className="portfolioPrice">
 
@@ -381,9 +415,7 @@ export default function ProjectsPage() {
                 </p>
 
 
-                {/* =================================================
-                    VIDEO BUTTON
-                ================================================= */}
+                {/* VIDEO BUTTON */}
 
                 <button
                   type="button"
@@ -405,9 +437,7 @@ export default function ProjectsPage() {
                 </button>
 
 
-                {/* =================================================
-                    CONTACT BUTTON
-                ================================================= */}
+                {/* CONTACT BUTTON */}
 
                 <Link
                   href="/#contact"
@@ -437,9 +467,7 @@ export default function ProjectsPage() {
       >
 
 
-        {/* ===================================================
-            COMPLETED PROJECT HEADING
-        =================================================== */}
+        {/* COMPLETED PROJECT HEADING */}
 
         <div className="projectCategoryHeading">
 
@@ -467,9 +495,7 @@ export default function ProjectsPage() {
         </div>
 
 
-        {/* ===================================================
-            COMPLETED INTRO
-        =================================================== */}
+        {/* COMPLETED INTRO */}
 
         <div className="completedIntro">
 
@@ -481,9 +507,7 @@ export default function ProjectsPage() {
         </div>
 
 
-        {/* ===================================================
-            COMPLETED PROJECT GRID
-        =================================================== */}
+        {/* COMPLETED PROJECT GRID */}
 
         <div className="projectPortfolioGrid">
 
@@ -495,9 +519,7 @@ export default function ProjectsPage() {
             >
 
 
-              {/* =================================================
-                  PROJECT IMAGE
-              ================================================= */}
+              {/* PROJECT IMAGE */}
 
               <div className="portfolioImage">
 
@@ -516,9 +538,7 @@ export default function ProjectsPage() {
               </div>
 
 
-              {/* =================================================
-                  PROJECT CONTENT
-              ================================================= */}
+              {/* PROJECT CONTENT */}
 
               <div className="portfolioContent">
 
@@ -553,9 +573,7 @@ export default function ProjectsPage() {
                 </p>
 
 
-                {/* =================================================
-                    COMPLETED PROJECT VIDEO
-                ================================================= */}
+                {/* VIDEO BUTTON */}
 
                 <button
                   type="button"
@@ -598,6 +616,165 @@ export default function ProjectsPage() {
 
 
       {/* =====================================================
+          ASSOCIATED PROJECTS
+      ===================================================== */}
+
+      <section
+        id="associated"
+        className="section projectCategorySection completedProjectsSection associatedProjectsSection"
+      >
+
+
+        {/* ASSOCIATED PROJECT HEADING */}
+
+        <div className="projectCategoryHeading">
+
+          <div>
+
+            <p className="eyebrow">
+              SPM ASSOCIATIONS
+            </p>
+
+
+            <h2>
+              Associated
+              <span> Projects.</span>
+            </h2>
+
+          </div>
+
+
+          <div className="projectCount">
+
+            {associatedProjects.length} Associated Projects
+
+          </div>
+
+        </div>
+
+
+        {/* ASSOCIATED INTRO */}
+
+        <div className="completedIntro">
+
+          <p>
+            Explore selected associated projects and
+            development partnerships connected with
+            the SPM Group portfolio.
+          </p>
+
+        </div>
+
+
+        {/* ASSOCIATED PROJECT GRID */}
+
+        <div className="projectPortfolioGrid">
+
+          {associatedProjects.map((project) => (
+
+            <article
+              key={project.number}
+              className="portfolioCard completedCard associatedCard"
+            >
+
+
+              {/* PROJECT IMAGE */}
+
+              <div className="portfolioImage">
+
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  sizes="(max-width: 700px) 100vw, 50vw"
+                />
+
+
+                <div className="portfolioStatus completedStatus">
+                  ASSOCIATED
+                </div>
+
+              </div>
+
+
+              {/* PROJECT CONTENT */}
+
+              <div className="portfolioContent">
+
+
+                {/* NUMBER + LOCATION */}
+
+                <div className="portfolioMeta">
+
+                  <span>
+                    {project.number}
+                  </span>
+
+
+                  <span>
+                    {project.location}
+                  </span>
+
+                </div>
+
+
+                {/* TITLE */}
+
+                <h3>
+                  {project.title}
+                </h3>
+
+
+                {/* DESCRIPTION */}
+
+                <p>
+                  {project.description}
+                </p>
+
+
+                {/* VIDEO BUTTON */}
+
+                <button
+                  type="button"
+                  className="projectVideoButton"
+                  onClick={() =>
+                    setActiveVideo(project.video)
+                  }
+                >
+
+                  <span className="videoIcon">
+                    ▶
+                  </span>
+
+
+                  <span>
+                    Click Here to Watch Project Video
+                  </span>
+
+                </button>
+
+
+                {/* CONTACT BUTTON */}
+
+                <Link
+                  href="/#contact"
+                  className="portfolioButton"
+                >
+                  Enquire About Project →
+                </Link>
+
+              </div>
+
+            </article>
+
+          ))}
+
+        </div>
+
+      </section>
+
+
+      {/* =====================================================
           PROJECT VIDEO POPUP
       ===================================================== */}
 
@@ -616,9 +793,7 @@ export default function ProjectsPage() {
           >
 
 
-            {/* =================================================
-                CLOSE BUTTON
-            ================================================= */}
+            {/* CLOSE BUTTON */}
 
             <button
               type="button"
@@ -632,9 +807,7 @@ export default function ProjectsPage() {
             </button>
 
 
-            {/* =================================================
-                VIDEO
-            ================================================= */}
+            {/* VIDEO */}
 
             <video
               src={activeVideo}

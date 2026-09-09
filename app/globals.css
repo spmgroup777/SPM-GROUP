@@ -4776,3 +4776,20 @@ footer p {
   }
 
 }
+/* =========================================================
+   ASSOCIATED PROJECTS
+========================================================= */
+
+.associatedProjectsSection {
+  margin-top: 40px;
+  padding-top: 85px;
+  border-top: 1px solid #E8E4DC;
+}
+
+.associatedCard .portfolioImage {
+  height: 280px;
+}
+
+.associatedCard .portfolioContent {
+  padding: 26px;
+}
