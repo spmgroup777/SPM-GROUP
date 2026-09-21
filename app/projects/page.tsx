@@ -18,7 +18,7 @@ const ongoingProjects = [
       "A resort-style mega integrated township concept presented in the supplied SPM promotional material. The material also mentions Rusthapur, M. Thurkappally and Gouraram, with plot sizes including 121 sq yards.",
     price: "₹5,49,999/-",
     priceNote: "Promotional price shown in supplied material",
-    video: "videos/project-01.mp4",
+    video: "/videos/project-01.mp4",
   },
 
   {
@@ -30,7 +30,7 @@ const ongoingProjects = [
       "An ongoing development project under SPM Group. Project details, specifications, pricing and availability can be updated with the official project information.",
     price: "Contact SPM",
     priceNote: "Current pricing and availability",
-    video: "videos/project-02.mp4",
+    video: "/videos/project-02.mp4",
   },
 
   {
@@ -42,7 +42,7 @@ const ongoingProjects = [
       "An ongoing development project under SPM Group. Project details, specifications, pricing and availability can be updated with the official project information.",
     price: "Contact SPM",
     priceNote: "Current pricing and availability",
-    video: "videos/project-03.mp4",
+    video: "/videos/project-03.mp4",
   },
 ];
 
@@ -66,7 +66,7 @@ const completedProjects = [
     ],
     description:
       "A completed development delivered by SPM Green Tech & Developers.",
-    video: "videos/project-01.mp4",
+    video: "/videos/project-01.mp4",
   },
 
   {
@@ -83,7 +83,7 @@ const completedProjects = [
     ],
     description:
       "A completed development delivered by SPM Green Tech & Developers.",
-    video: "videos/project-02.mp4",
+    video: "/videos/project-02.mp4",
   },
 ];
 
@@ -107,7 +107,7 @@ const associatedProjects = [
     ],
     description:
       "An associated development project connected with the SPM Group project portfolio.",
-    video: "videos/project-01.mp4",
+    video: "/videos/project-01.mp4",
   },
 
   {
@@ -124,7 +124,7 @@ const associatedProjects = [
     ],
     description:
       "An associated project representing SPM Group's development experience and partnerships.",
-    video: "videos/project-02.mp4",
+    video: "/videos/project-02.mp4",
   },
 
   {
@@ -141,7 +141,7 @@ const associatedProjects = [
     ],
     description:
       "An associated project representing SPM Group's development experience and partnerships.",
-    video: "videos/project-03.mp4",
+    video: "/videos/project-03.mp4",
   },
 ];
 
@@ -389,7 +389,7 @@ export default function ProjectsPage() {
 
         <video
           className="projectsHeroVideo"
-          src="videos/promo.mp4"
+          src="/videos/promo.mp4"
           autoPlay
           muted
           loop
