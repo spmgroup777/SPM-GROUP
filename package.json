@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "express": "^5.2.1",
-    "next": "latest",
+    "next": "^16.3.5",
     "react": "latest",
     "react-dom": "latest",
     "twilio": "^6.1.0"

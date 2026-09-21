@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, type KeyboardEvent, type PointerEvent } from "react";
 
 /* =========================================================
    ONGOING PROJECTS
@@ -57,6 +57,13 @@ const completedProjects = [
     title: "Completed Project 01",
     location: "Jaipur, Telangana",
     image: "/jaipur.jpeg",
+    // Add more completed-project photos here. Swipe, drag, click arrows, or use keyboard arrows.
+    gallery: [
+      "/jaipur.jpeg",
+      // Add more photos here, for example:
+      // "/jaipur-2.jpeg",
+      // "/jaipur-3.jpeg",
+    ],
     description:
       "A completed development delivered by SPM Green Tech & Developers.",
     video: "videos/project-01.mp4",
@@ -67,6 +74,13 @@ const completedProjects = [
     title: "Completed Project 02",
     location: "Ramagundam, Telangana",
     image: "/gdk1.jpeg",
+    // Add more completed-project photos here. Swipe, drag, click arrows, or use keyboard arrows.
+    gallery: [
+      "/gdk1.jpeg",
+      // Add more photos here, for example:
+      // "/gdk2.jpeg",
+      // "/gdk3.jpeg",
+    ],
     description:
       "A completed development delivered by SPM Green Tech & Developers.",
     video: "videos/project-02.mp4",
@@ -83,7 +97,14 @@ const associatedProjects = [
     number: "01",
     title: "Associated Project 01",
     location: "Telangana",
-    image: "/mancherialoffice1.jpeg",
+    image: "/sager.jpeg",
+    // Add more associated-project photos here. Swipe, drag, click arrows, or use keyboard arrows.
+    gallery: [
+      "/sager1.jpeg",
+      // Add more photos here, for example:
+      // "/sager2.jpeg",
+      // "/sager3.jpeg",
+    ],
     description:
       "An associated development project connected with the SPM Group project portfolio.",
     video: "videos/project-01.mp4",
@@ -93,12 +114,194 @@ const associatedProjects = [
     number: "02",
     title: "Associated Project 02",
     location: "Telangana",
-    image: "/ofcc.jpeg",
+    image: "/asso2.jpeg",
+    // Add more associated-project photos here. Swipe, drag, click arrows, or use keyboard arrows.
+    gallery: [
+      "/asso2.jpeg",
+      // Add more photos here, for example:
+      // "/asso2-2.jpeg",
+      // "/asso2-3.jpeg",
+    ],
     description:
       "An associated project representing SPM Group's development experience and partnerships.",
     video: "videos/project-02.mp4",
   },
+
+  {
+    number: "03",
+    title: "Associated Project 03",
+    location: "Telangana",
+    image: "/asso1.jpeg",
+    // Add more associated-project photos here. Swipe, drag, click arrows, or use keyboard arrows.
+    gallery: [
+      "/asso1.jpeg",
+      // Add more photos here, for example:
+      // "/asso1-2.jpeg",
+      // "/asso1-3.jpeg",
+    ],
+    description:
+      "An associated project representing SPM Group's development experience and partnerships.",
+    video: "videos/project-03.mp4",
+  },
 ];
+
+
+
+/* =========================================================
+   SWIPEABLE PROJECT PHOTO GALLERY
+========================================================= */
+
+type PhotoGalleryProps = {
+  images: string[];
+  alt: string;
+};
+
+function PhotoGallery({ images, alt }: PhotoGalleryProps) {
+  const validImages = images.filter(Boolean);
+  const [currentPhoto, setCurrentPhoto] = useState(0);
+  const [pointerStartX, setPointerStartX] = useState<number | null>(null);
+
+  const totalPhotos = validImages.length;
+
+  const showPrevious = () => {
+    if (totalPhotos < 2) return;
+
+    setCurrentPhoto((photo) =>
+      photo === 0 ? totalPhotos - 1 : photo - 1
+    );
+  };
+
+  const showNext = () => {
+    if (totalPhotos < 2) return;
+
+    setCurrentPhoto((photo) =>
+      photo === totalPhotos - 1 ? 0 : photo + 1
+    );
+  };
+
+  const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (totalPhotos < 2) return;
+    setPointerStartX(event.clientX);
+  };
+
+  const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
+    if (pointerStartX === null || totalPhotos < 2) return;
+
+    const distance = pointerStartX - event.clientX;
+
+    if (Math.abs(distance) >= 45) {
+      if (distance > 0) {
+        showNext();
+      } else {
+        showPrevious();
+      }
+    }
+
+    setPointerStartX(null);
+  };
+
+  const handlePointerCancel = () => {
+    setPointerStartX(null);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (totalPhotos < 2) return;
+
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      showPrevious();
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      showNext();
+    }
+  };
+
+  if (totalPhotos === 0) {
+    return (
+      <div className="portfolioPhotoGallery portfolioPhotoGalleryEmpty">
+        <span>No project photos available</span>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="portfolioPhotoGallery"
+      role="region"
+      aria-label={`${alt} photo gallery`}
+      tabIndex={totalPhotos > 1 ? 0 : -1}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerCancel}
+      onKeyDown={handleKeyDown}
+    >
+      {validImages.map((image, index) => (
+        <div
+          key={`${image}-${index}`}
+          className={`portfolioPhotoSlide ${
+            index === currentPhoto ? "active" : ""
+          }`}
+          aria-hidden={index !== currentPhoto}
+        >
+          <Image
+            src={image}
+            alt={`${alt} photo ${index + 1} of ${totalPhotos}`}
+            fill
+            sizes="(max-width: 600px) 100vw, (max-width: 950px) 50vw, 33vw"
+            priority={index === 0}
+            draggable={false}
+          />
+        </div>
+      ))}
+
+      {totalPhotos > 1 && (
+        <>
+          <button
+            type="button"
+            className="portfolioGalleryArrow portfolioGalleryPrev"
+            onClick={showPrevious}
+            aria-label="Previous project photo"
+          >
+            &lt;
+          </button>
+
+          <button
+            type="button"
+            className="portfolioGalleryArrow portfolioGalleryNext"
+            onClick={showNext}
+            aria-label="Next project photo"
+          >
+            &gt;
+          </button>
+
+          <div
+            className="portfolioGalleryDots"
+            aria-label={`Photo ${currentPhoto + 1} of ${totalPhotos}`}
+          >
+            {validImages.map((image, index) => (
+              <button
+                key={`${image}-dot-${index}`}
+                type="button"
+                className={`portfolioGalleryDot ${
+                  index === currentPhoto ? "active" : ""
+                }`}
+                onClick={() => setCurrentPhoto(index)}
+                aria-label={`Show project photo ${index + 1}`}
+                aria-current={index === currentPhoto ? "true" : undefined}
+              />
+            ))}
+          </div>
+
+          <div className="portfolioGalleryHint">
+            Swipe or use arrows
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 
 /* =========================================================
@@ -523,13 +726,10 @@ export default function ProjectsPage() {
 
               <div className="portfolioImage">
 
-                <Image
-                  src={project.image}
+                <PhotoGallery
+                  images={project.gallery}
                   alt={project.title}
-                  fill
-                  sizes="(max-width: 700px) 100vw, 50vw"
                 />
-
 
                 <div className="portfolioStatus completedStatus">
                   COMPLETED
@@ -557,13 +757,6 @@ export default function ProjectsPage() {
                   </span>
 
                 </div>
-
-
-                {/* TITLE */}
-
-                <h3>
-                  {project.title}
-                </h3>
 
 
                 {/* DESCRIPTION */}
@@ -682,13 +875,10 @@ export default function ProjectsPage() {
 
               <div className="portfolioImage">
 
-                <Image
-                  src={project.image}
+                <PhotoGallery
+                  images={project.gallery}
                   alt={project.title}
-                  fill
-                  sizes="(max-width: 700px) 100vw, 50vw"
                 />
-
 
                 <div className="portfolioStatus completedStatus">
                   ASSOCIATED
@@ -716,13 +906,6 @@ export default function ProjectsPage() {
                   </span>
 
                 </div>
-
-
-                {/* TITLE */}
-
-                <h3>
-                  {project.title}
-                </h3>
 
 
                 {/* DESCRIPTION */}

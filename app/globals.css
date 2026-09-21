@@ -2474,14 +2474,9 @@ h2 span {
 
 .projectPortfolioGrid {
   display: grid;
-
-  grid-template-columns:
-    repeat(
-      3,
-      minmax(0, 1fr)
-    );
-
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
+  width: 100%;
 }
 
 
@@ -2685,7 +2680,7 @@ footer p {
   }
 
   .projectPortfolioGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .projectCategoryHeading {
@@ -4799,4 +4794,500 @@ footer p {
   max-height: 80vh;
   display: block;
   object-fit: contain;
+}
+
+/* =========================================================
+   COMPLETED + ASSOCIATED PROJECT TITLES
+   ========================================================= */
+
+.completedProjectsSection .portfolioContent h3,
+.associatedProjectsSection .portfolioContent h3 {
+  display: none;
+}
+
+/* Associated projects: 3 cards in one row on desktop */
+.associatedProjectsSection .projectPortfolioGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Tablet */
+@media (max-width: 950px) {
+  .associatedProjectsSection .projectPortfolioGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .associatedProjectsSection .projectPortfolioGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   SWIPEABLE PHOTO GALLERY
+   Used in Completed + Associated project cards
+========================================================= */
+
+.portfolioPhotoGallery {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: pan-y;
+  background: #243B53;
+  user-select: none;
+}
+
+.portfolioPhotoSlide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(12px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.portfolioPhotoSlide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  z-index: 1;
+}
+
+.portfolioPhotoSlide img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.portfolioGalleryArrow {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  background: rgba(13, 27, 42, 0.65);
+  color: #FFFFFF;
+  font-size: 30px;
+  line-height: 35px;
+  cursor: pointer;
+  transform: translateY(-50%);
+  backdrop-filter: blur(8px);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.portfolioGalleryArrow:hover {
+  background: #0D1B2A;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.portfolioGalleryPrev {
+  left: 14px;
+}
+
+.portfolioGalleryNext {
+  right: 14px;
+}
+
+.portfolioGalleryDots {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transform: translateX(-50%);
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(13, 27, 42, 0.5);
+  backdrop-filter: blur(6px);
+}
+
+.portfolioGalleryDot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.portfolioGalleryDot.active {
+  background: #B89B5E;
+  transform: scale(1.35);
+}
+
+.portfolioGalleryHint {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 3;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #FFFFFF;
+  background: rgba(13, 27, 42, 0.55);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .portfolioGalleryArrow {
+    width: 38px;
+    height: 38px;
+    font-size: 27px;
+  }
+
+  .portfolioGalleryHint {
+    font-size: 9px;
+    bottom: 12px;
+    right: 12px;
+  }
+
+  .portfolioGalleryDots {
+    bottom: 12px;
+  }
+}
+
+
+/* =========================================================
+   FINAL PROJECT PHOTO GALLERY
+   Works on desktop, laptop, tablet and mobile.
+   Supports mouse/touch drag, arrow buttons and keyboard.
+   ========================================================= */
+
+.portfolioPhotoGallery {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #243B53;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+
+.portfolioPhotoGallery:active {
+  cursor: grabbing;
+}
+
+.portfolioPhotoGallery:focus-visible {
+  outline: 2px solid #B89B5E;
+  outline-offset: -2px;
+}
+
+.portfolioPhotoGalleryEmpty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.portfolioPhotoSlide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(24px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  pointer-events: none;
+}
+
+.portfolioPhotoSlide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.portfolioPhotoSlide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.portfolioGalleryArrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 50%;
+  background: rgba(13, 27, 42, 0.72);
+  color: #FFFFFF;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 31px;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.portfolioGalleryArrow:hover {
+  background: #0D1B2A;
+  border-color: #B89B5E;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.portfolioGalleryArrow:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 2px;
+}
+
+.portfolioGalleryPrev {
+  left: 14px;
+}
+
+.portfolioGalleryNext {
+  right: 14px;
+}
+
+.portfolioGalleryDots {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  max-width: calc(100% - 140px);
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(13, 27, 42, 0.58);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  transform: translateX(-50%);
+}
+
+.portfolioGalleryDot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.portfolioGalleryDot:hover {
+  background: #FFFFFF;
+}
+
+.portfolioGalleryDot.active {
+  background: #B89B5E;
+  transform: scale(1.35);
+}
+
+.portfolioGalleryDot:focus-visible {
+  outline: 2px solid #FFFFFF;
+  outline-offset: 3px;
+}
+
+.portfolioGalleryHint {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 4;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #FFFFFF;
+  background: rgba(13, 27, 42, 0.58);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  pointer-events: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Keep completed + associated project titles hidden as requested. */
+.completedProjectsSection .portfolioContent h3,
+.associatedProjectsSection .portfolioContent h3 {
+  display: none;
+}
+
+/* Associated projects: 3 columns on desktop. */
+.associatedProjectsSection .projectPortfolioGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 950px) {
+  .associatedProjectsSection .projectPortfolioGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .associatedProjectsSection .projectPortfolioGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolioGalleryArrow {
+    width: 38px;
+    height: 38px;
+    font-size: 27px;
+  }
+
+  .portfolioGalleryPrev {
+    left: 10px;
+  }
+
+  .portfolioGalleryNext {
+    right: 10px;
+  }
+
+  .portfolioGalleryDots {
+    bottom: 10px;
+  }
+
+  .portfolioGalleryHint {
+    right: 10px;
+    bottom: 10px;
+    font-size: 9px;
+  }
+}
+.portfolioGalleryArrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+
+  background: rgba(13, 27, 42, 0.75);
+  color: #ffffff;
+
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.portfolioGalleryArrow:hover {
+  background: #B89B5E;
+  border-color: #B89B5E;
+  color: #0D1B2A;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.portfolioGalleryPrev {
+  left: 15px;
+}
+
+.portfolioGalleryNext {
+  right: 15px;
+}
+.portfolioGalleryArrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+
+  background: rgba(13, 27, 42, 0.75);
+  color: #ffffff;
+
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transform: translateY(-50%);
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.portfolioGalleryArrow:hover {
+  background: #B89B5E;
+  border-color: #B89B5E;
+  color: #0D1B2A;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.portfolioGalleryPrev {
+  left: 15px;
+}
+
+.portfolioGalleryNext {
+  right: 15px;
+}
+@media (max-width: 700px) {
+  .portfolioGalleryArrow {
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+  }
+
+  .portfolioGalleryPrev {
+    left: 10px;
+  }
+
+  .portfolioGalleryNext {
+    right: 10px;
+  }
 }
